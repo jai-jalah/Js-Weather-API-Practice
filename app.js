@@ -13,11 +13,9 @@ app.get('/', function (req, res) {
 
     response.on('data', function (data) {
       const weatherData = JSON.parse(data);
-      const object = {
-        name: 'Jai',
-        favouriteFood: 'Okra',
-      };
-      console.log(JSON.stringify(object));
+      const temp = weatherData.main.temp;
+      const desc = weatherData.weather[0].description;
+      console.log(desc);
     });
   });
   res.send('Server is up and running.');
