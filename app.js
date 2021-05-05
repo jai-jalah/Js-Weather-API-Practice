@@ -14,11 +14,14 @@ app.get('/', function (req, res) {
     response.on('data', function (data) {
       const weatherData = JSON.parse(data);
       const temp = weatherData.main.temp;
-      const desc = weatherData.weather[0].description;
-      console.log(desc);
+      const weatherDesc = weatherData.weather[0].description;
+      res.write(
+        `<h1>The temperature in London is ${temp} degrees Celcius.</h1>`
+      );
+      res.write(`<p>The weather is currently ${weatherDesc}.</p>`);
+      res.send();
     });
   });
-  res.send('Server is up and running.');
 });
 
 app.listen(3000, function () {
